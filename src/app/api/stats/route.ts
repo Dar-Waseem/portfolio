@@ -1,16 +1,5 @@
 import { NextResponse } from "next/server";
-
-interface Stats {
-  visitors: number;
-  pageViews: number;
-  lastUpdated: string;
-}
-
-let statsCache: Stats = {
-  visitors: 1234,
-  pageViews: 5678,
-  lastUpdated: new Date().toISOString(),
-};
+import { dbQueries } from "@/lib/db";
 
 const visitorSet = new Set<string>();
 
@@ -26,18 +15,21 @@ export async function GET(request: Request) {
 
       if (!visitorSet.has(visitorId)) {
         visitorSet.add(visitorId);
-        statsCache.visitors++;
+        dbQueries.incrementVisitors.run();
       }
-      statsCache.pageViews++;
-      statsCache.lastUpdated = new Date().toISOString();
-
-      return NextResponse.json(
-        { success: true, stats: statsCache },
-        { status: 200 }
-      );
+      dbQueries.incrementPageViews.run();
     }
 
-    return NextResponse.json(statsCache, { status: 200 });
+    const stats = dbQueries.getStats.get() as { visitors: number; page_views: number };
+
+    return NextResponse.json(
+      {
+        visitors: stats.visitors,
+        pageViews: stats.page_views,
+        lastUpdated: new Date().toISOString()
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Stats API error:", error);
     return NextResponse.json(
@@ -50,15 +42,23 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { event, data } = body;
+    const { event } = body;
 
     if (event === "page_view") {
-      statsCache.pageViews++;
-      statsCache.lastUpdated = new Date().toISOString();
+      dbQueries.incrementPageViews.run();
     }
 
+    const stats = dbQueries.getStats.get() as { visitors: number; page_views: number };
+
     return NextResponse.json(
-      { success: true, stats: statsCache },
+      {
+        success: true,
+        stats: {
+          visitors: stats.visitors,
+          pageViews: stats.page_views,
+          lastUpdated: new Date().toISOString()
+        }
+      },
       { status: 200 }
     );
   } catch (error) {

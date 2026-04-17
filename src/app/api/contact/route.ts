@@ -1,11 +1,5 @@
 import { NextResponse } from "next/server";
-
-const submissions: Array<{
-  name: string;
-  email: string;
-  message: string;
-  submittedAt: string;
-}> = [];
+import { dbQueries } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
@@ -27,21 +21,20 @@ export async function POST(request: Request) {
       );
     }
 
+    const result = dbQueries.addSubmission.run(name, email, message);
+
     const submission = {
+      id: result.lastInsertRowid,
       name,
       email,
       message,
-      submittedAt: new Date().toISOString(),
+      created_at: new Date().toISOString(),
     };
-
-    submissions.push(submission);
-
-    console.log("Contact form submission:", submission);
 
     return NextResponse.json(
       {
         success: true,
-        message: "Message sent successfully!",
+        message: "Message saved to database!",
         data: submission
       },
       { status: 200 }
@@ -56,12 +49,21 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
-  return NextResponse.json(
-    {
-      message: "Contact API",
-      submissions: submissions,
-      count: submissions.length
-    },
-    { status: 200 }
-  );
+  try {
+    const submissions = dbQueries.getSubmissions.all();
+    return NextResponse.json(
+      {
+        message: "Contact API",
+        submissions: submissions,
+        count: submissions.length
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error fetching submissions:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch submissions" },
+      { status: 500 }
+    );
+  }
 }
