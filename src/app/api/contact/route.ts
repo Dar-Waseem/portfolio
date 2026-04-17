@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
 
+const submissions: Array<{
+  name: string;
+  email: string;
+  message: string;
+  submittedAt: string;
+}> = [];
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -20,13 +27,22 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log("Contact form submission:", { name, email, message });
+    const submission = {
+      name,
+      email,
+      message,
+      submittedAt: new Date().toISOString(),
+    };
+
+    submissions.push(submission);
+
+    console.log("Contact form submission:", submission);
 
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: "Message sent successfully!",
-        data: { name, email, submittedAt: new Date().toISOString() }
+        data: submission
       },
       { status: 200 }
     );
@@ -41,7 +57,11 @@ export async function POST(request: Request) {
 
 export async function GET() {
   return NextResponse.json(
-    { message: "Contact API - Use POST to send messages" },
+    {
+      message: "Contact API",
+      submissions: submissions,
+      count: submissions.length
+    },
     { status: 200 }
   );
 }
