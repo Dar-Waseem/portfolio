@@ -15,18 +15,24 @@ const contactInfo = [
     label: "Email",
     value: "john@example.com",
     href: "mailto:john@example.com",
+    gradient: "from-blue-500/10 via-cyan-500/5 to-teal-500/10",
+    iconBg: "from-blue-500 to-cyan-500",
   },
   {
     icon: Phone,
     label: "Phone",
     value: "+1 (555) 123-4567",
     href: "tel:+15551234567",
+    gradient: "from-emerald-500/10 via-green-500/5 to-teal-500/10",
+    iconBg: "from-emerald-500 to-teal-500",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "San Francisco, CA",
     href: "#",
+    gradient: "from-violet-500/10 via-purple-500/5 to-fuchsia-500/10",
+    iconBg: "from-violet-500 to-fuchsia-500",
   },
 ];
 
@@ -63,8 +69,12 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 bg-gradient-to-b from-muted/30 via-background to-background relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-1/3 right-0 w-96 h-96 bg-gradient-to-l from-purple-500/10 to-pink-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/3 left-0 w-72 h-72 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +82,9 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Get In Touch</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
+            Get In Touch
+          </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind? Let's work together to create something amazing.
           </p>
@@ -95,14 +107,14 @@ export function Contact() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="hover:shadow-md transition-shadow">
+                  <Card className={`border-0 bg-gradient-to-br ${item.gradient} backdrop-blur-sm shadow-lg hover:shadow-xl transition-all hover:-translate-y-1`}>
                     <CardContent className="p-4 flex items-center gap-4">
-                      <div className="p-3 rounded-full bg-primary/10">
-                        <item.icon className="h-5 w-5 text-primary" />
+                      <div className={`p-3 rounded-xl bg-gradient-to-br ${item.iconBg} shadow-lg`}>
+                        <item.icon className="h-5 w-5 text-white" />
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">{item.label}</p>
-                        <p className="font-medium">{item.value}</p>
+                        <p className="font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">{item.value}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -117,11 +129,11 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <Card>
+            <Card className="border-0 bg-gradient-to-br from-violet-500/10 via-purple-500/5 to-fuchsia-500/10 backdrop-blur-sm shadow-lg">
               <CardContent className="p-6">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="name" className="text-foreground/80">Name</Label>
                     <Input
                       id="name"
                       value={formState.name}
@@ -130,10 +142,11 @@ export function Contact() {
                       }
                       placeholder="Your name"
                       required
+                      className="bg-background/50 border-purple-500/20 focus:border-purple-500/50"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email" className="text-foreground/80">Email</Label>
                     <Input
                       id="email"
                       type="email"
@@ -143,10 +156,11 @@ export function Contact() {
                       }
                       placeholder="your@email.com"
                       required
+                      className="bg-background/50 border-purple-500/20 focus:border-purple-500/50"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="text-foreground/80">Message</Label>
                     <Textarea
                       id="message"
                       value={formState.message}
@@ -156,11 +170,12 @@ export function Contact() {
                       placeholder="Your message..."
                       rows={4}
                       required
+                      className="bg-background/50 border-purple-500/20 focus:border-purple-500/50"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 shadow-lg shadow-purple-500/30"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

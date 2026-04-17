@@ -1563,35 +1563,35 @@ function oo_oo(i, ...v) {
     } catch (e) {}
     return v;
 }
-oo_oo; /* istanbul ignore next */ 
+oo_oo; /* istanbul ignore next */
 function oo_tr(i, ...v) {
     try {
         oo_cm().consoleTrace(i, v);
     } catch (e) {}
     return v;
 }
-oo_tr; /* istanbul ignore next */ 
+oo_tr; /* istanbul ignore next */
 function oo_tx(i, ...v) {
     try {
         oo_cm().consoleError(i, v);
     } catch (e) {}
     return v;
 }
-oo_tx; /* istanbul ignore next */ 
+oo_tx; /* istanbul ignore next */
 function oo_ts(v) {
     try {
         oo_cm().consoleTime(v);
     } catch (e) {}
     return v;
 }
-oo_ts; /* istanbul ignore next */ 
+oo_ts; /* istanbul ignore next */
 function oo_te(v, i) {
     try {
         oo_cm().consoleTimeEnd(v, i);
     } catch (e) {}
     return v;
 }
-oo_te; /*eslint unicorn/no-abusive-eslint-disable:,eslint-comments/disable-enable-pair:,eslint-comments/no-unlimited-disable:,eslint-comments/no-aggregating-enable:,eslint-comments/no-duplicate-disable:,eslint-comments/no-unused-disable:,eslint-comments/no-unused-enable:,*/ 
+oo_te; /*eslint unicorn/no-abusive-eslint-disable:,eslint-comments/disable-enable-pair:,eslint-comments/no-unlimited-disable:,eslint-comments/no-aggregating-enable:,eslint-comments/no-duplicate-disable:,eslint-comments/no-unused-disable:,eslint-comments/no-unused-enable:,*/
 var _c;
 __turbopack_context__.k.register(_c, "Projects");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -2308,35 +2308,35 @@ function oo_oo(i, ...v) {
     } catch (e) {}
     return v;
 }
-oo_oo; /* istanbul ignore next */ 
+oo_oo; /* istanbul ignore next */
 function oo_tr(i, ...v) {
     try {
         oo_cm().consoleTrace(i, v);
     } catch (e) {}
     return v;
 }
-oo_tr; /* istanbul ignore next */ 
+oo_tr; /* istanbul ignore next */
 function oo_tx(i, ...v) {
     try {
         oo_cm().consoleError(i, v);
     } catch (e) {}
     return v;
 }
-oo_tx; /* istanbul ignore next */ 
+oo_tx; /* istanbul ignore next */
 function oo_ts(v) {
     try {
         oo_cm().consoleTime(v);
     } catch (e) {}
     return v;
 }
-oo_ts; /* istanbul ignore next */ 
+oo_ts; /* istanbul ignore next */
 function oo_te(v, i) {
     try {
         oo_cm().consoleTimeEnd(v, i);
     } catch (e) {}
     return v;
 }
-oo_te; /*eslint unicorn/no-abusive-eslint-disable:,eslint-comments/disable-enable-pair:,eslint-comments/no-unlimited-disable:,eslint-comments/no-aggregating-enable:,eslint-comments/no-duplicate-disable:,eslint-comments/no-unused-disable:,eslint-comments/no-unused-enable:,*/ 
+oo_te; /*eslint unicorn/no-abusive-eslint-disable:,eslint-comments/disable-enable-pair:,eslint-comments/no-unlimited-disable:,eslint-comments/no-aggregating-enable:,eslint-comments/no-duplicate-disable:,eslint-comments/no-unused-disable:,eslint-comments/no-unused-enable:,*/
 var _c;
 __turbopack_context__.k.register(_c, "Contact");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -2412,7 +2412,7 @@ function Footer() {
                                     lineNumber: 25,
                                     columnNumber: 26
                                 }, this),
-                                " by John Doe"
+                                "Dar Waseem"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/footer.tsx",

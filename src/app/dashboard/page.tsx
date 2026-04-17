@@ -392,10 +392,12 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="messages">
-            <Card>
+            <Card className="border-0 bg-gradient-to-br from-slate-500/10 via-slate-400/5 to-zinc-500/10 backdrop-blur-sm shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Database className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-slate-600 to-zinc-600 bg-clip-text text-transparent">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-slate-500 to-zinc-500">
+                    <Database className="h-5 w-5 text-white" />
+                  </div>
                   Contact Submissions ({submissions.length})
                 </CardTitle>
               </CardHeader>
@@ -426,10 +428,12 @@ export default function Dashboard() {
 
           <TabsContent value="github">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
+              <Card className="border-0 bg-gradient-to-br from-gray-800/10 via-gray-700/5 to-slate-800/10 backdrop-blur-sm shadow-lg">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Code2 className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-gray-700 to-slate-700 dark:from-gray-300 dark:to-slate-300 bg-clip-text text-transparent">
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-gray-700 to-slate-700 dark:from-gray-600 dark:to-slate-600">
+                      <Code2 className="h-5 w-5 text-white" />
+                    </div>
                     GitHub Profile
                   </CardTitle>
                 </CardHeader>
@@ -459,10 +463,12 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-0 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10 backdrop-blur-sm shadow-lg">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Star className="h-5 w-5" />
+                  <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500">
+                      <Star className="h-5 w-5 text-white" />
+                    </div>
                     Top Repositories
                   </CardTitle>
                 </CardHeader>
@@ -488,10 +494,12 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="activity">
-            <Card>
+            <Card className="border-0 bg-gradient-to-br from-cyan-500/10 via-sky-500/5 to-blue-500/10 backdrop-blur-sm shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Activity className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                    <Activity className="h-5 w-5 text-white" />
+                  </div>
                   Recent Activity
                 </CardTitle>
               </CardHeader>
@@ -501,14 +509,16 @@ export default function Dashboard() {
                 ) : (
                   <div className="space-y-3">
                     {activities.map((act) => (
-                      <div key={act.id} className="flex items-center gap-4 p-3 border rounded-lg">
-                        <div className={`p-2 rounded-full ${
-                          act.type === "message" ? "bg-purple-500/10" : "bg-blue-500/10"
+                      <div key={act.id} className="flex items-center gap-4 p-3 border rounded-lg bg-gradient-to-r from-background to-muted/30">
+                        <div className={`p-2 rounded-lg ${
+                          act.type === "message"
+                            ? "bg-gradient-to-br from-violet-500 to-fuchsia-500"
+                            : "bg-gradient-to-br from-blue-500 to-cyan-500"
                         }`}>
                           {act.type === "message" ? (
-                            <MessageSquare className="h-4 w-4 text-purple-500" />
+                            <MessageSquare className="h-4 w-4 text-white" />
                           ) : (
-                            <Users className="h-4 w-4 text-blue-500" />
+                            <Users className="h-4 w-4 text-white" />
                           )}
                         </div>
                         <div className="flex-1">
@@ -526,39 +536,41 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="system">
-            <Card>
+            <Card className="border-0 bg-gradient-to-br from-rose-500/10 via-red-500/5 to-orange-500/10 backdrop-blur-sm shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Server className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-rose-600 to-orange-600 bg-clip-text text-transparent">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-rose-500 to-orange-500">
+                    <Server className="h-5 w-5 text-white" />
+                  </div>
                   System Status
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center justify-between p-3 border rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10">
                     <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-green-500" />
-                      <span>Database</span>
+                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 animate-pulse" />
+                      <span className="font-medium">Database</span>
                     </div>
-                    <Badge variant="secondary">Connected</Badge>
+                    <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0">Connected</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center justify-between p-3 border rounded-lg bg-gradient-to-r from-blue-500/10 to-cyan-500/10">
                     <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-green-500" />
-                      <span>API Server</span>
+                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 animate-pulse" />
+                      <span className="font-medium">API Server</span>
                     </div>
-                    <Badge variant="secondary">Running</Badge>
+                    <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0">Running</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center justify-between p-3 border rounded-lg bg-gradient-to-r from-purple-500/10 to-pink-500/10">
                     <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-green-500" />
-                      <span>GitHub API</span>
+                      <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 animate-pulse" />
+                      <span className="font-medium">GitHub API</span>
                     </div>
-                    <Badge variant="secondary">Connected</Badge>
+                    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0">Connected</Badge>
                   </div>
-                  <div className="mt-4 pt-4 border-t">
-                    <p className="text-sm text-muted-foreground">
-                      Total Forks: <span className="font-medium text-foreground">{totalForks.toLocaleString()}</span>
+                  <div className="mt-4 pt-4 border-t border-gradient-to-r from-rose-500/20 to-orange-500/20">
+                    <p className="text-sm">
+                      Total Forks: <span className="font-bold bg-gradient-to-r from-rose-600 to-orange-600 bg-clip-text text-transparent">{totalForks.toLocaleString()}</span>
                     </p>
                   </div>
                 </div>
