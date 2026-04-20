@@ -34,7 +34,6 @@ const features = [
     title: "Responsive",
     description: "Building apps that work seamlessly on all devices.",
     gradient: "from-emerald-500/20 via-green-500/10 to-teal-500/20",
-    iconBg: "from-emerald-500 to-teal-500",
     textGradient: "from-emerald-600 to-teal-600",
   },
 ];
